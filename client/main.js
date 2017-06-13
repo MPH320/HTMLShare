@@ -131,6 +131,7 @@ Template.editor.helpers({
 
 Template.editingUsers.helpers({
   users:function(){
+		console.log("Editing users helper is running");
 		var doc, eusers, users;
 		doc = Documents.findOne();
 		if (!doc) {return;}
