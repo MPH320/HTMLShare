@@ -24,3 +24,4 @@ babrahams:editable-text
 mizzao:sharejs-codemirror
 session
 twbs:bootstrap
+iron:router

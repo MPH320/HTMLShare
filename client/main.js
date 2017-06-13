@@ -11,6 +11,21 @@ Meteor.subscribe('documents', function() {
 
 Meteor.subscribe("editingUsers");
 
+Router.configure({
+	layoutTemplate: 'ApplicationLayout'
+});
+
+Router.route('/', function () {
+	this.render("navbar",{to: "header"});
+	this.render("docList",{to: "main"});
+});
+
+Router.route('/documents/:_id', function () {
+	Session.set("docid", this.params._id);
+	this.render("navbar",{to: "header"});
+	this.render("docItem",{to: "main"});
+});
+
 var setupCurrentDocument = function() {
 	
 	var doc;
@@ -19,8 +34,8 @@ var setupCurrentDocument = function() {
 			doc = Documents.findOne();
 			if (doc) {
 				Session.set("docid", doc._id);
-				console.log("the doc content without session:");
-				console.log(doc.content);
+				//console.log("the doc content without session:");
+				//console.log(doc.content);
 				if(doc.content){
 					docContent = doc.content;
 					contentIsSet.set(true);
@@ -75,7 +90,7 @@ Tracker.autorun(function(){
 		
 			showEditor = true;
 			
-			console.log(showEditor);
+			//console.log(showEditor);
 			Session.set("showEditor", true);
 			$("#viewer_iframe").contents().find("html").html(docContent);
 		}
@@ -235,3 +250,9 @@ var updateContent = function() {
 		$("#viewer_iframe").contents().find("html").html(doc.content);
 	}
 };
+
+Template.docList.helpers({
+  documents:function(){
+		return Documents.find();
+	}
+});
