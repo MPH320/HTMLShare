@@ -168,7 +168,16 @@ Template.editingUsers.helpers({
 Template.navbar.events({
 	"click .js-load-doc":function(event){
 		Session.set("docid", this._id);
-	},
+	}
+});
+
+Template.navbar.helpers({
+  documents:function(){
+		return Documents.find();
+	}
+});
+
+Template.docList.events({
 	"click .js-add-doc":function(event){
 		event.preventDefault();
 		if (!Meteor.user()){
@@ -182,12 +191,6 @@ Template.navbar.events({
 				}
 			});
 		}
-	}
-});
-
-Template.navbar.helpers({
-  documents:function(){
-		return Documents.find();
 	}
 });
 

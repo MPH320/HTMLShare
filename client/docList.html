@@ -1,11 +1,21 @@
 <template name="docList">
-	<div class="container top-margin">
+	<div class="container docList">
 		<div class="row">
+			<div class="col-lg-3 col-md-4 col-xs-6">
+				<a href="#" class="js-add-doc">
+					<div class="light-border">
+						 <p class="text-center">Add doc</p> <span class="glyphicon glyphicon-plus icon" aria-hidden="true"></span>
+					</div>
+				</a>
+			</div>
+			
 			{{#each documents}}
-			<div class="col-md-3 col-xs-6">
-				<div class="light-border">
-					<a href="/documents/{{_id}}">{{title}}</a>
-				</div>
+			<div class="col-lg-3 col-md-4 col-xs-6">
+				<a href="/documents/{{_id}}">
+					<div class="light-border">
+						<p class="text-center">{{title}}</p><span class="ion-android-document icon"></span>
+					</div>
+				</a>
 			</div>
 			{{/each}}
 		</div>
